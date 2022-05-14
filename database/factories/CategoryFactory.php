@@ -14,14 +14,20 @@ class CategoryFactory extends Factory
      */
     public function definition()
     {
-        $categories = ['Electronics', 'Clothes', 'Tools', 'Books', 'Kitchenware', 'Miscellaneous'];
-        foreach ($categories as $category)
-
-            DB::table('Categories')->insert([
-                'name' => $category,
-                'description' => $this->faker->realText(100),
-                'menu' => 1,
-            ]);
-        }
+        return [
+            'name' => $this->faker->word,
+            'slug' => $this->faker->word,
+            'description' => $this->faker->text,
+        ];
     }
+}
 
+
+//$categories = ['Electronics', 'Clothes', 'Tools', 'Books', 'Kitchenware', 'Miscellaneous'];
+//foreach ($categories as $category)
+//
+//    DB::table('Categories')->insert([
+//        'name' => $category,
+//        'description' => $this->faker->realText(100),
+//        'menu' => 1,
+//    ]);

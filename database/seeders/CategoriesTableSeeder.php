@@ -16,19 +16,18 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        $categories = ['Electronics', 'Clothes', 'Tools', 'Books', 'Kitchenware', 'Miscellaneous'];
-        foreach ($categories as $category) {
-
-            DB::table('Categories')->insert([
-                'name' => $category,
-                'slug' => $category,
-                'description' => 'Some description',
-                'menu' => 1,
-            ]);
-        }
-
+//        $categories = ['Electronics', 'Clothes', 'Tools', 'Books', 'Kitchenware', 'Miscellaneous'];
+//        foreach ($categories as $category) {
+//
+//            DB::table('Categories')->insert([
+//                'name' => $category,
+//                'slug' => $category,
+//                'description' => 'Some description',
+//            ]);
+//        }
 
 
-//        Category::factory(10)->create();
+
+        Category::factory(10)->create();
     }
 }

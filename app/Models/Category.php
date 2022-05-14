@@ -4,22 +4,29 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
+/**
+     * Class Category
+     * @package App\Models
+     */
 class Category extends Model
 {
     use HasFactory;
+    /**
+     * @var string
+     */
     protected $table = 'categories';
 
+    /**
+     * @var array
+     */
     protected $fillable = [
         'name', 'slug', 'description', 'featured', 'menu', 'image'
     ];
 
-    protected $casts = [
-        'featured'  =>  'boolean',
-        'menu'      =>  'boolean'
-    ];
-
+    /**
+     * @param $value
+     */
     public function setNameAttribute($value)
     {
         $this->attributes['name'] = $value;
@@ -27,10 +34,12 @@ class Category extends Model
     }
 
     /**
-     * @return BelongsToMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function products()
     {
-        return $this->belongsToMany(Product::class, 'product_categories', 'category_id', 'product_id');
+        return $this->hasMany(Product::class);
     }
+
+    public $timestamps = false;
 }

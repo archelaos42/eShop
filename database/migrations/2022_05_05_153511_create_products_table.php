@@ -17,11 +17,17 @@ class CreateProductsTable extends Migration
             $table->increments('id');
 
             $table->foreignId('brand_id')->constrained();
-//            $table->foreign('brand_id')->references('id')->on('brand')
-//                ->onDelete('cascade');
+
+            $table->foreignId('category_id')->constrained();
 
             $table->string('name');
             $table->string('slug');
+
+//            $table->string('size');
+//            $table->string('colour');
+//            $table->string('weight');
+//            $table->string('price');
+
             $table->text('description')->nullable();
             $table->unsignedInteger('quantity');
             $table->boolean('featured')->default(0);

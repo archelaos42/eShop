@@ -2,16 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-/**
- * Class Attribute
- * @package App\Models
- */
 class Attribute extends Model
 {
-    use HasFactory;
     /**
      * @var string
      */
@@ -20,22 +15,13 @@ class Attribute extends Model
     /**
      * @var array
      */
-    protected $fillable = [
-        'name', 'frontend_type', 'is_filterable'
-    ];
+    protected $fillable = ['product_id', 'quantity', 'price', 'value', 'attribute_id', ];
 
     /**
-     * @var array
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    protected $casts  = [
-        'is_filterable' =>  'boolean',
-    ];
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function values()
+    public function products()
     {
-        return $this->hasMany(AttributeValue::class);
+        return $this->belongsToMany(Product::class);
     }
 }

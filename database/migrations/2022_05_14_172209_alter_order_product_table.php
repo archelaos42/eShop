@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAttributesTable extends Migration
+class AlterOrderProductTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateAttributesTable extends Migration
      */
     public function up()
     {
-        Schema::create('attributes', function (Blueprint $table) {
-            $table->bigIncrements('id')->unsigned()->index();
-            $table->string('name');
-            $table->string('value')->nullable();
-            $table->timestamps();
+        Schema::table('order_product', function (Blueprint $table) {
+
+            $table->bigInteger('order_id')->unsigned()->after('id');
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
         });
     }
 
@@ -28,6 +27,6 @@ class CreateAttributesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('attributes');
+        //
     }
 }

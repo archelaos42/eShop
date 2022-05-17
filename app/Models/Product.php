@@ -60,11 +60,11 @@ class Product extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function attributes()
     {
-        return $this->belongsToMany(Attribute::class);
+        return $this->hasMany(Attribute::class);
     }
 
     /**
@@ -73,6 +73,14 @@ class Product extends Model
     public function category()
     {
         return $this->belongsTo(Category::class,);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function subcategory()
+    {
+        return $this->belongsTo(Subcategory::class,);
     }
 
     /**

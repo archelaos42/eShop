@@ -18,6 +18,7 @@ class ProductFactory extends Factory
         return [
             'brand_id' =>  random_int(1, 3),
             'category_id' => random_int(1, 6),
+            'subcategory_id' => random_int(1, 2),
             'description' => $this->faker->realText(100),
             'name' => $this->faker->word,
             'slug' => $this->faker->word,

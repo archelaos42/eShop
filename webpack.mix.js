@@ -12,6 +12,10 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js').vue()
+    .vue({
+        extractStyles: true,
+        globalStyles: false
+    })
     .postCss('resources/css/app.css', 'public/css', [
         require('postcss-import'),
         require('tailwindcss'),
@@ -19,6 +23,8 @@ mix.js('resources/js/app.js', 'public/js').vue()
     .alias({
         '@': 'resources/js',
     });
+
+// mix.browserSync({proxy:'localhost:3000'});
 
 if (mix.inProduction()) {
     mix.version();

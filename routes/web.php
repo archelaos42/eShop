@@ -1,7 +1,12 @@
 <?php
 
+//use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductController;
+use App\Models\Product;
 use Illuminate\Foundation\Application;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\URL;
 use Inertia\Inertia;
 use Laravel\Nova\Nova;
 
@@ -15,6 +20,9 @@ use Laravel\Nova\Nova;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
+Route::get('/products', [ProductController::class, 'index'])->name('products')->middleware('auth');
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -34,5 +42,4 @@ Route::middleware([
         return Inertia::render('Dashboard');
     })->name('dashboard');
 });
-
 

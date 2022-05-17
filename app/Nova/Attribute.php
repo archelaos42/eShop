@@ -3,7 +3,7 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\BelongsToMany;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -46,7 +46,7 @@ class Attribute extends Resource
             Text::make(('Name'), 'name'),
             Text::make(('Value'), 'value'),
 
-            BelongsToMany::make('Products'),
+            BelongsTo::make('Product'),
         ];
     }
 

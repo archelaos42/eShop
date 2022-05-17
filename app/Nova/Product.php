@@ -5,8 +5,12 @@ namespace App\Nova;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Fields\Text;
+use Orlyapps\NovaBelongsToDepend\NovaBelongsToDepend;
+use App\Models\Category;
+use App\Models\Subcategory;
 
 class Product extends Resource
 {
@@ -43,12 +47,26 @@ class Product extends Resource
     {
         return [
             ID::make(__('ID'), 'id')->sortable(),
-            ID::make(__('Name'), 'name')->sortable(),
-            ID::make(__('Slug'), 'slug')->sortable(),
+            Text::make(__('Name'), 'name')->sortable(),
+            Text::make(__('Slug'), 'slug')->sortable(),
+            Text::make(__('Quantity'), 'quantity')->sortable(),
 
             BelongsTo::make('Brand'),
-            BelongsTo::make('Category'),
-            BelongsToMany::make('Attributes'),
+
+            NovaBelongsToDepend::make('Category')
+            ->options(Category::all()),
+
+            NovaBelongsToDepend::make('Subcategory')
+//                ->options(Subcategory::query()->where('category_id', $category->id)),
+                ->optionsResolve(function ($category) {
+                    return Subcategory::query()->where('category_id', $category->id)->get(['id','name']);
+                })
+            ->dependsOn('Category'),
+
+
+
+
+            HasMany::make('Attributes'),
             BelongsToMany::make('Orders'),
         ];
     }

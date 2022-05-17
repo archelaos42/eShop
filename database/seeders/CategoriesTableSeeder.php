@@ -2,10 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Category;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Faker\Factory as Faker;
 
 class CategoriesTableSeeder extends Seeder
 {
@@ -16,18 +14,18 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-//        $categories = ['Electronics', 'Clothes', 'Tools', 'Books', 'Kitchenware', 'Miscellaneous'];
-//        foreach ($categories as $category) {
-//
-//            DB::table('Categories')->insert([
-//                'name' => $category,
-//                'slug' => $category,
-//                'description' => 'Some description',
-//            ]);
-//        }
+        $categories = ['Electronics', 'Clothes', 'Tools', 'Books', 'Kitchenware', 'Miscellaneous'];
+        foreach ($categories as $category) {
+
+            DB::table('Categories')->insert([
+                'name' => $category,
+                'slug' => $category,
+                'description' => 'Some description',
+            ]);
+        }
 
 
 
-        Category::factory(10)->create();
+//        Category::factory(10)->create();
     }
 }

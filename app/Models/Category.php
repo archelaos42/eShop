@@ -21,7 +21,7 @@ class Category extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'slug', 'description', 'featured', 'menu', 'image'
+        'name', 'slug', 'description', 'image'
     ];
 
     /**
@@ -39,6 +39,14 @@ class Category extends Model
     public function products()
     {
         return $this->hasMany(Product::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function subcategories()
+    {
+        return $this->hasMany(Subcategory::class);
     }
 
     public $timestamps = false;

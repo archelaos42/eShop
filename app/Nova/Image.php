@@ -3,9 +3,8 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\BelongsToMany;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Image extends Resource
 {
@@ -42,8 +41,9 @@ class Image extends Resource
     {
         return [
             ID::make(__('ID'), 'id')->sortable(),
+            \Laravel\Nova\Fields\Image::make('Full'),
 
-            BelongsToMany::make('Products'),
+            BelongsTo::make('Product'),
         ];
     }
 

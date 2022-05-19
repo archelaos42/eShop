@@ -4,7 +4,9 @@ namespace App\Nova;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\HasOne;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Text;
 
 class Category extends Resource
@@ -51,9 +53,10 @@ class Category extends Resource
             Text::make(__('Name'), 'name')->sortable(),
             Text::make(__('Slug'), 'slug')->sortable(),
             Text::make(__('Description'), 'description')->sortable(),
+            Image::make('Image'),
 
             HasMany::make('Products'),
-            HasMany::make('Subcategories')
+            HasMany::make('Subcategories'),
 
         ];
     }

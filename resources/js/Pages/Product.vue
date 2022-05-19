@@ -1,18 +1,16 @@
 <script>
-import AppLayout from '@/Layouts/AppLayout.vue';
-import LandingPage from '@/Pages/LandingPage.vue';
-
-
+import AppLayout from '@/Layouts/AppLayout.vue'
+import ProductView from '@/Pages/ProductView.vue'
 import { defineComponent } from 'vue'
-
-
 
 export default defineComponent({
     components: {
-        AppLayout, LandingPage
+        AppLayout, ProductView
     },
     props: {
-        categories:Object,
+        product:Object,
+        images:Object,
+        attributes:Object,
     },
     data() {
         return {
@@ -26,16 +24,25 @@ export default defineComponent({
     <AppLayout title="Dashboard">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Welcome to Eshop
+                {{ product.description }}
             </h2>
         </template>
-
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                    <LandingPage :categories="$page['props']['categories']"/>
+                    <ProductView
+                        :product="$page['props']['product']"
+                        :images="$page['props']['images']"
+                        :attributes="$page['props']['attributes']"
+                    />
                 </div>
             </div>
         </div>
     </AppLayout>
 </template>
+
+
+
+<style scoped>
+
+</style>

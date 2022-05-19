@@ -29,3 +29,18 @@ mix.js('resources/js/app.js', 'public/js').vue()
 if (mix.inProduction()) {
     mix.version();
 }
+
+module.exports = {
+    module: {
+        rules: [
+            {
+                test: /\.(png|jpg|gif)$/i,
+                use: [
+                    {
+                        loader: 'url-loader',
+                    },
+                ],
+            },
+        ],
+    },
+};

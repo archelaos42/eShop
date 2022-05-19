@@ -57,7 +57,6 @@ class Product extends Resource
             ->options(Category::all()),
 
             NovaBelongsToDepend::make('Subcategory')
-//                ->options(Subcategory::query()->where('category_id', $category->id)),
                 ->optionsResolve(function ($category) {
                     return Subcategory::query()->where('category_id', $category->id)->get(['id','name']);
                 })
@@ -68,6 +67,7 @@ class Product extends Resource
 
             HasMany::make('Attributes'),
             BelongsToMany::make('Orders'),
+            HasMany::make('Images'),
         ];
     }
 

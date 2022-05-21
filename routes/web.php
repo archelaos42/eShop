@@ -1,6 +1,7 @@
 <?php
 
 //use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\ProductController;
 use App\Models\Product;
@@ -28,6 +29,8 @@ Route::get('/products', [ProductController::class, 'index'])->name('products')->
 Route::get('/dashboard', [LandingController::class, 'index'])->name('dashboard')->middleware('auth');
 
 Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show')->middleware('auth');
+
+Route::get('/category/{id}', [CategoryController::class, 'show'])->name('category.show')->middleware('auth');
 
 
 //Route::get('/electronics', function () {

@@ -22,6 +22,8 @@ class CreateProductsTable extends Migration
 
             $table->foreignId('subcategory_id')->constrained();
 
+            $table->integer('price')->nullable();
+            $table->string('featuredImage')->nullable();
             $table->string('name');
             $table->string('slug');
 

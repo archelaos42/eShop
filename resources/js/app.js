@@ -4,6 +4,10 @@ import { createApp, h } from 'vue';
 import { createInertiaApp, Link } from '@inertiajs/inertia-vue3';
 import { InertiaProgress } from '@inertiajs/progress';
 
+
+
+
+
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
 
 createInertiaApp({
@@ -17,5 +21,7 @@ createInertiaApp({
             .mount(el);
     },
 });
+
+
 
 InertiaProgress.init({ color: '#4B5563' });

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Attribute;
+use App\Models\Category;
 use App\Models\Image;
 use App\Models\Product;
 use App\Models\Subcategory;
@@ -14,7 +15,10 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
-        return Inertia::render('Products', compact('products'));
+        $categories = Category::all();
+        $subcategories = Subcategory::all();
+        $attributes = Attribute::all();
+        return Inertia::render('Products', compact('products', 'categories', 'subcategories', 'attributes'));
 //        dd($products);
     }
 
@@ -25,6 +29,6 @@ class ProductController extends Controller
         $attributes = Attribute::query()->where('product_id', $id)->get();
         return Inertia::render('Product', compact('product', 'attributes', 'images'));
 //        dd($attributes);
-
     }
+
 }

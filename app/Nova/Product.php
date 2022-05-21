@@ -7,6 +7,7 @@ use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Text;
 use Orlyapps\NovaBelongsToDepend\NovaBelongsToDepend;
 use App\Models\Category;
@@ -50,6 +51,8 @@ class Product extends Resource
             Text::make(__('Name'), 'name')->sortable(),
             Text::make(__('Slug'), 'slug')->sortable(),
             Text::make(__('Quantity'), 'quantity')->sortable(),
+            Image::make(__('Featured Image'), 'featuredImage')->sortable(),
+            Text::make(__('Price'), 'price')->sortable(),
 
             BelongsTo::make('Brand'),
 

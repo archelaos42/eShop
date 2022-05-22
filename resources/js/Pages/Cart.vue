@@ -1,3 +1,4 @@
+<!--Component holding the Cart component-->
 <script>
 import AppLayout from '@/Layouts/AppLayout.vue'
 import CartView from '@/Pages/CartView.vue'

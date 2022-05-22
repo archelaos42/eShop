@@ -1,5 +1,5 @@
+<!--Test page, obsolete-->
 <script>
-
 export default ({
     components: {
     },

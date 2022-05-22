@@ -12,6 +12,9 @@ use Inertia\Inertia;
 
 class CategoryController extends Controller
 {
+    /**
+     * Displays all products from the chosen category.
+     */
     public function show($id)
     {
         $products = Product::query()->where('category_id', $id)->get();

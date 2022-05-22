@@ -8,14 +8,18 @@ use Inertia\Inertia;
 
 class CartController extends Controller
 {
+    /**
+     * Shows the cart's content.
+     */
     public function show()
     {
-        $products = Product::all();
         $cartContent = \Cart::getContent();
-        return Inertia::render('Cart', compact('products', 'cartContent'));
+        return Inertia::render('Cart', compact('cartContent'));
 //        dd($cartContent);
     }
-
+    /**
+     * Remove an item from the cart.
+     */
     public function removeItem($id)
     {
         \Cart::remove($id);
@@ -25,7 +29,9 @@ class CartController extends Controller
         }
         return redirect()->back()->with('message', 'Item removed from cart successfully.');
     }
-
+    /**
+     * Removes all item from the cart.
+     */
     public function clearCart()
     {
         \Cart::clear();

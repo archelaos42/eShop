@@ -1,3 +1,4 @@
+<!--Component holding the single product view component-->
 <script>
 import AppLayout from '@/Layouts/AppLayout.vue'
 import ProductView from '@/Pages/ProductView.vue'

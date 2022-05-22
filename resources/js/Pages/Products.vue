@@ -1,3 +1,4 @@
+<!--Component holding the category (multi product) view component-->
 <script>
 import AppLayout from '@/Layouts/AppLayout.vue'
 import ProductsView from '@/Pages/ProductsView.vue'

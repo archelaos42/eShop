@@ -1,3 +1,4 @@
+<!--Component holding the dashboard component-->
 <script>
 import AppLayout from '@/Layouts/AppLayout.vue';
 import LandingPage from '@/Pages/LandingPage.vue';

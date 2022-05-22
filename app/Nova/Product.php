@@ -53,19 +53,17 @@ class Product extends Resource
             Text::make(__('Quantity'), 'quantity')->sortable(),
             Image::make(__('Featured Image'), 'featuredImage')->sortable(),
             Text::make(__('Price'), 'price')->sortable(),
-
             BelongsTo::make('Brand'),
-
             NovaBelongsToDepend::make('Category')
             ->options(Category::all()),
 
+//            Package added function that ensures that the subcategory dropdown only displays options belonging to
+//     the selected category. Requires some tweaking on the edit method as the subcategory field does not always resolve properly.
             NovaBelongsToDepend::make('Subcategory')
                 ->optionsResolve(function ($category) {
                     return Subcategory::query()->where('category_id', $category->id)->get(['id','name']);
                 })
             ->dependsOn('Category'),
-
-
 
 
             HasMany::make('Attributes'),

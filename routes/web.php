@@ -3,6 +3,7 @@
 //use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\ProductController;
 use App\Models\Product;
@@ -24,27 +25,32 @@ use Laravel\Nova\Nova;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//Route::get('/cart', [CartController::class, 'getCart'])->name('checkout.cart');
 
+//Route named products is not actually used anywhere, like its controller. It seems
+//to have been referenced somewhere, as commenting it out throws an error.
 Route::get('/products', [ProductController::class, 'index'])->name('products')->middleware('auth');
 
-Route::get('/dashboard', [LandingController::class, 'index'])->name('dashboard')->middleware('auth');
 
-Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show')->middleware('auth');
+//The View routes for dashboard, single product view, category (multi product) view, and the user cart
+Route::get('/dashboard', [LandingController::class, 'index'])->name('dashboard');
+Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
+Route::get('/category/{id}', [CategoryController::class, 'show'])->name('category.show');
+Route::get('/cart', [CartController::class, 'show'])->name('cart.show')->middleware('auth')->middleware('auth');
 
-Route::get('/cart', [CartController::class, 'show'])->name('cart.show')->middleware('auth');
+//The Cart controll routes
+Route::get('/cart/item/{id}/remove', [CartController::class, 'removeItem'])->name('checkout.cart.remove')->middleware('auth');
+Route::get('/cart/clear', [CartController::class, 'clearCart'])->name('checkout.cart.clear')->middleware('auth');
+Route::post('/product/add/cart', [ProductController::class, 'addToCart'])->name('product.add.cart')->middleware('auth');
 
-Route::get('/category/{id}', [CategoryController::class, 'show'])->name('category.show')->middleware('auth');
-
-Route::post('/product/add/cart', [ProductController::class, 'addToCart'])->name('product.add.cart');
-
-//Route::get('/cart', [CartController::class, 'getCart'])->name('checkout.cart');
-Route::get('/cart/item/{id}/remove', [CartController::class, 'removeItem'])->name('checkout.cart.remove');
-Route::get('/cart/clear', [CartController::class, 'clearCart'])->name('checkout.cart.clear');
+//The checkout controll routes
+Route::get('/checkout', [CheckoutController::class, 'getCheckout'])->name('checkout.index')->middleware('auth');
+Route::post('/checkout/order', [CheckoutController::class, 'placeOrder'])->name('checkout.place.order')->middleware('auth');
 
 
-Route::get('/test', function () {
-    return Inertia::render('Test');
-})->name('test');
+//Route::get('/test', function () {
+//    return Inertia::render('Test');
+//})->name('test');
 
 
 Route::get('/welcome', function () {

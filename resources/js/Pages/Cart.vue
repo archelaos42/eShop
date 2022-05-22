@@ -1,47 +1,45 @@
 <script>
 import AppLayout from '@/Layouts/AppLayout.vue'
-import ProductView from '@/Pages/ProductView.vue'
+import CartView from '@/Pages/CartView.vue'
 import { defineComponent } from 'vue'
 
 export default defineComponent({
     components: {
-        AppLayout, ProductView
+        AppLayout, CartView
     },
     props: {
-        product:Object,
-        images:Object,
-        attributes:Object,
-        cartCount:Number,
+        products:Object,
+        cartContent:Object,
     },
     data() {
         return {
+            user: this.$page.props.user
         }
     },
-
 })
+
+
 </script>
 
 <template>
-    <AppLayout title="Dashboard">
+    <AppLayout title="Cart">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ cartCount }}
+                Your Cart
             </h2>
         </template>
         <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                    <ProductView
-                        :product="$page['props']['product']"
-                        :images="$page['props']['images']"
-                        :attributes="$page['props']['attributes']"
+                    <CartView
+                        :products="$page['props']['products']"
+                        :cartContent="$page['props']['cartContent']"
                     />
                 </div>
             </div>
-        </div>
+
     </AppLayout>
 </template>
-
 
 
 <style scoped>

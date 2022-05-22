@@ -1,6 +1,7 @@
 <?php
 
 //use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\ProductController;
@@ -30,12 +31,20 @@ Route::get('/dashboard', [LandingController::class, 'index'])->name('dashboard')
 
 Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show')->middleware('auth');
 
+Route::get('/cart', [CartController::class, 'show'])->name('cart.show')->middleware('auth');
+
 Route::get('/category/{id}', [CategoryController::class, 'show'])->name('category.show')->middleware('auth');
 
+Route::post('/product/add/cart', [ProductController::class, 'addToCart'])->name('product.add.cart');
 
-//Route::get('/electronics', function () {
-//    return Inertia::render('Products');
-//})->name('electronics');
+//Route::get('/cart', [CartController::class, 'getCart'])->name('checkout.cart');
+Route::get('/cart/item/{id}/remove', [CartController::class, 'removeItem'])->name('checkout.cart.remove');
+Route::get('/cart/clear', [CartController::class, 'clearCart'])->name('checkout.cart.clear');
+
+
+Route::get('/test', function () {
+    return Inertia::render('Test');
+})->name('test');
 
 
 Route::get('/welcome', function () {

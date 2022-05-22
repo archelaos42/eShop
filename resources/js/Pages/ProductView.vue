@@ -1,6 +1,12 @@
 <script>
+import {useForm} from "@inertiajs/inertia-vue3";
+import {reactive} from "vue";
+import {Inertia} from "@inertiajs/inertia";
+
+
 export default ({
     components: {
+
     },
     props: {
         product:Object,
@@ -9,11 +15,10 @@ export default ({
     },
     data() {
         return {
-
+            // selectedId: null,
+            // selectedPrice: null,
         }
     },
-    methods: {
-    }
 })
 </script>
 
@@ -23,8 +28,7 @@ export default ({
 
 
 <template>
-    <div class="bg-white">
-
+    <div v-for="product in product" class="bg-white">
         <div class="max-w-2xl mx-auto py-24 px-4 grid items-center grid-cols-1 gap-y-16 gap-x-8 sm:px-6 sm:py-32 lg:max-w-7xl lg:px-8 lg:grid-cols-2">
             <div>
                 <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">{{ product.name }}</h2>
@@ -41,13 +45,21 @@ export default ({
             <div class="grid grid-cols-2 grid-rows-2 gap-4 sm:gap-6 lg:gap-8">
                 <div v-for="image in images">
                 <img :src="`/storage/${image.full}`" alt="Walnut card tray filled with cards and card angled in dedicated groove." class="bg-gray-100 rounded-lg">
-<!--                <img src="https://tailwindui.com/img/ecommerce-images/product-feature-03-detail-01.jpg" alt="Walnut card tray with white powder coated steel divider and 3 punchout holes." class="bg-gray-100 rounded-lg">-->
-<!--                <img src="https://tailwindui.com/img/ecommerce-images/product-feature-03-detail-02.jpg" alt="Top down view of walnut card tray with embedded magnets and card groove." class="bg-gray-100 rounded-lg">-->
-<!--                <img src="https://tailwindui.com/img/ecommerce-images/product-feature-03-detail-03.jpg" alt="Side of walnut card tray with card groove and recessed card area." class="bg-gray-100 rounded-lg">-->
-<!--                <img src="https://tailwindui.com/img/ecommerce-images/product-feature-03-detail-04.jpg" alt="Walnut card tray filled with cards and card angled in dedicated groove." class="bg-gray-100 rounded-lg">-->
                 </div>
             </div>
         </div>
+        <inertia-link
+            :href="route('product.add.cart')"
+            method="post"
+            :data="{
+                    productId: product.id,
+                    price: product.price,
+                    qty: 1,
+                    name: product.name,
+            }"
+            classes="px-3 py-2 mr-2 rounded text-white text-sm font-bold whitespace-no-wrap bg-blue-600 hover:bg-blue-800"
+            as="button"
+        >AddtoCart</inertia-link>
     </div>
 </template>
 
